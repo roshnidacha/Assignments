@@ -86,6 +86,19 @@ select c.FirstName as CustomerFirstName, c.LastName as CustomerLastName, a.Accou
 from Customers c
 join Accounts a on c.CustomerID = a.CustomerID;
 
+#2. List all employees who manage branches where the total account balances exceed $20,000.
+select e.FirstName as EmployeeFirstName, e.LastName as EmployeeLastName, b.BranchName from Employees e
+join Branches b on e.BranchID = b.BranchID
+join Accounts a on b.BranchID = a.BranchID
+group by e.EmployeeID, b.BranchID
+having SUM(a.Balance) > 20000;
+
+#3. Identify accounts whose balance is higher than the average balance of accounts within their branch.
+select a.AccountID, a.AccountType, a.Balance, a.BranchID
+from Accounts a
+join Branches b on a.BranchID = b.BranchID
+where a.Balance > (select AVG(a2.Balance) from Accounts a2 where a2.BranchID = a.BranchID);
+    
 #4. Find customers who have at least one transaction of more than $1,000
 select distinct c.FirstName, c.LastName
 from Customers c
