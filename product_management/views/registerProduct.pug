@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.container
+    h1 Admin DashBoard
+    h2 Register Product
+    form(action="/register" method="POST")
+      div
+        input(type="text", name="name" placeholder ="Product Name", id="name" required)
+      div
+        input(type="text", name="id" placeholder="Product ID", id="id" required)
+      div
+        input(type="text", name="price" placeholder="Price" id="price" required)
+      div
+        input(type="text", name="category" placeholder="category" id="category" required)
+      div
+        input(type="date", name="manufacturingDate", id="manufacturingDate" required)
+      div
+        input(type="date", name="expirationDate", id="expirationDate" required)
+      div
+        button(type="submit") Register Product
+    h2 Product List
+    ul
+      each product in products
+        li
+          p Name: #{product.name}
+          p Price: $#{product.price}
+          p Category: #{product.category}
+          p Manufacturing Date: #{product.manufacturingDate}
+          p Expiration Date: #{product.expirationDate}

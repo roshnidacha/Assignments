@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.container
+    h1 Search Products
+
+    // Product search form
+    form(action="/search", method="get")
+      div
+        label(for="name") Product Name:
+        input(type="text", name="name", id="name")
+      div
+        label(for="category") Category:
+        input(type="text", name="category", id="category")
+      div
+        button(type="submit") Search
+
+    // Only display the product list if there are results (after search)
+    if products && products.length > 0
+      h2 Search Results
+      ul
+        each product in products
+          li
+            p Name: #{product.name}
+            p Price: $#{product.price}
+            p Category: #{product.category}
+            p Manufacturing Date: #{product.manufacturingDate}
+            p Expiration Date: #{product.expirationDate}
+    else
+      p No products found.

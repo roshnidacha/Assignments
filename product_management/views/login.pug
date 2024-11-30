@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div.container
+    p Please choose a login option
+    
+    div
+      a(href='/admin_login')
+        button(type="button") Admin Login
+    p Login as an Admin to register and manage products.
+    
+    div
+      a(href='/user_login')
+        button(type="button") User Login
+    p Login as a User to search products by name or category.
+
+
